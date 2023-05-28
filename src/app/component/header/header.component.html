@@ -16,13 +16,19 @@
 		</ul>
 	</div> -->
 
-	<div class="profile-logo dropdown">
-		<button class="btn btn-outline-light dropdown-toggle"
-			data-bs-toggle="dropdown">
+	<div class="profile-logo dropstart">
+		<span class="btn btn-outline-light dropdown-toggle" 
+			id="dropdownMenuButton11" 
+			data-bs-toggle="dropdown" 
+			aria-haspopup="true" 
+			aria-expanded="false"
+		>
 			<fa-icon [icon]="personIcon"></fa-icon>
-		</button>
+		</span>
 
-		<ul class="dropdown-menu dropdown-menu-dark">
+		<ul class="dropdown-menu dropdown-menu-dark" 
+			aria-labelledby="dropdownMenuButton11"
+		>
 			<li>
 				<a href="#"
 					class="dropdown-item">
