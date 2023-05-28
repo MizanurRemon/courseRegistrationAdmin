@@ -1,0 +1,47 @@
+.container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  background-color: rgb(236, 240, 241);
+  border-radius: 25px;
+  padding: 15px;
+  height: min-content;
+  min-width: 450px;
+  max-width: 500px;
+}
+
+.login-card h1 {
+  font-size: 30px;
+  font-weight: bolder;
+  padding-bottom: 20px;
+}
+
+.login-card form {
+  font-size: 15px;
+}
+
+.login-card form .form-group {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-card form input[type="submit"] {
+  background-color: rgb(120, 196, 126);
+  border-radius: 10px;
+  color: aliceblue;
+  border-width: 0px;
+  font-weight: bold;
+
+}
+
+.form-label {
+
+  font-size: 11px;
+}
+
+.form-control {}
