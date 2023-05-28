@@ -1,0 +1,25 @@
+nav{
+    height: 4rem;
+}
+
+.side-nav-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.side-nav-button fa-icon{
+    cursor: pointer;
+    color: white;
+}
+
+.side-nav-button:hover{
+    cursor: pointer;
+    background-color: rgb(49, 49, 49);
+    border-radius: 30%;
+}
+
+.profile-logo{
+    margin-left: auto;
+}
