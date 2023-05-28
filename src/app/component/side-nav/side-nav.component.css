@@ -1,15 +1,12 @@
 .side-nav-content {
   color: white;
-  margin-left: 10px;
-  margin-right: 10px;
+  
 }
 
 .nav-list {
   list-style: none;
   padding-left: 0%;
   border-radius: 5px;
-  margin-bottom: 5px;
-  margin-top: 5px;
 }
 
 .nav-list-item {
@@ -18,13 +15,9 @@
   align-items: center;
   font-size: 14px;
   width: 250px;
-  /* padding: 10px;
-    border-radius: 5px;
-    background-color: rgba(169, 169, 169, 0.216); */
 }
 
 .nav-list-item span {
-
   text-transform: capitalize;
 }
 
@@ -37,6 +30,8 @@
   background-color: rgba(169, 169, 169, 0.216);
   cursor: pointer;
   border-radius: 10px;
+  padding-right: 10px;
+
 }
 
 /* .nav-list-open .nav-list li:hover {
