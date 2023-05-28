@@ -17,7 +17,7 @@
   padding: 10px;
   align-items: center;
   font-size: 14px;
-width: 250px;
+  width: 250px;
   /* padding: 10px;
     border-radius: 5px;
     background-color: rgba(169, 169, 169, 0.216); */
@@ -33,11 +33,17 @@ width: 250px;
 
 }
 
-.nav-list-open .nav-list li:hover {
+.nav-list li:hover {
   background-color: rgba(169, 169, 169, 0.216);
   cursor: pointer;
   border-radius: 10px;
 }
+
+/* .nav-list-open .nav-list li:hover {
+  background-color: rgba(169, 169, 169, 0.216);
+  cursor: pointer;
+  border-radius: 10px;
+} */
 
 a {
   text-decoration: none;
