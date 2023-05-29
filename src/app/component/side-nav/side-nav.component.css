@@ -1,6 +1,6 @@
 .side-nav-content {
   color: white;
-  
+  padding: 5px;
 }
 
 .nav-list {
@@ -30,7 +30,6 @@
   background-color: rgba(169, 169, 169, 0.216);
   cursor: pointer;
   border-radius: 10px;
-  padding-right: 10px;
 
 }
 

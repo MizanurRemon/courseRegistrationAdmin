@@ -1,0 +1,104 @@
+.container {}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+.request-list {
+  background-color: black;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+.column-card .scroll-list {
+  height: 97%;
+  overflow: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+.user-column-content {}
+
+.date {
+  color: rgb(201, 201, 201);
+  font-size: 11px;
+  margin-left: auto;
+}
+
+.user-profile img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50px;
+  margin-right: 5px;
+}
+
+.user-profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.username {
+  color: white;
+  font-size: 12px;
+}
+
+.user-roll {
+  color: white;
+  font-size: 12px;
+}
+
+.content {
+  color: white;
+  font-size: 14px;
+  margin: 10px 0px 10px 0px;
+}
+
+.content-bottom {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.accept-button {
+  padding: 5px;
+  background-color: rgb(17, 53, 26);
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+  border-radius: 5px;
+  font-size: 12px;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0px 10px 0px 0px;
+}
+
+.accept-button :hover {
+  background-color: rgb(13, 53, 23);
+  cursor: pointer;
+}
+
+.decline-button {
+  padding: 5px;
+  background-color: rgb(90, 23, 34);
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+  border-radius: 5px;
+  font-size: 12px;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0px 0px 0px 10px;
+}

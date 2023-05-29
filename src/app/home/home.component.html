@@ -8,7 +8,21 @@
 
 		<div [ngClass]="{'display-area-shrink': sideNavStatus}"
 			class="display-area">
-			<h1>Main Content</h1>
+
+
+			<div *ngIf="sideNavService.sideNavItem == 'home'">
+				<app-dashboard></app-dashboard>
+				
+			</div>
+
+			<div *ngIf="sideNavService.sideNavItem == 'student'">
+				<app-student></app-student>
+			</div>
+
+			<div *ngIf="sideNavService.sideNavItem == 'course'">
+				<app-course></app-course>
+			</div>
+			
 		</div>
 	</main>
 </div>

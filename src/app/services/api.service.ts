@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginResponse } from '../model/login.model';
 import { HttpClient } from '@angular/common/http';
+import { RegisteredCourses } from '../model/registeredCourses.model';
+import { CommonResponse } from '../model/common.model';
+import { CousesResponse } from '../model/courses.model';
+import { StudentResponse } from '../model/student.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +14,11 @@ export class ApiService {
 
   private BASE_URL = "http://localhost:5001/v2/"
   private LOGIN = "admin_login"
+  private REGISTERED_COURSES = "get_registered_courses"
+  private UPDATE_REGISTERED_COURSE_STATUS = "update_registered_courses_status";
+  private COURSES = "courses";
+  private ADD_COURSES = "add_course";
+  private GET_STUDENT = "get_student";
 
   constructor(private http: HttpClient) { }
 
@@ -22,5 +31,36 @@ export class ApiService {
 
     return this.http.post<LoginResponse>(this.BASE_URL + this.LOGIN, formData);
 
+  }
+
+  getRegisteredCourse(): Observable<RegisteredCourses> {
+
+    return this.http.get<RegisteredCourses>(this.BASE_URL + this.REGISTERED_COURSES);
+  }
+
+  updateRegisteredCourseStatus(id: any, status: any): Observable<CommonResponse> {
+    var formData: any = new FormData()
+    formData.append('id', id)
+    formData.append('status', status)
+
+    return this.http.post<CommonResponse>(this.BASE_URL + this.UPDATE_REGISTERED_COURSE_STATUS, formData);
+  }
+
+  getCourses(): Observable<CousesResponse> {
+
+    return this.http.get<CousesResponse>(this.BASE_URL + this.COURSES);
+  }
+
+  addCourses(courseName: any, credits: String): Observable<CommonResponse> {
+    var formData: any = new FormData()
+    formData.append('title', courseName)
+    formData.append('credits', credits)
+    formData.append('status', 'active')
+
+    return this.http.post<CommonResponse>(this.BASE_URL + this.ADD_COURSES, formData);
+  }
+
+  getStudents(): Observable<StudentResponse> {
+    return this.http.post<StudentResponse>(this.BASE_URL + this.GET_STUDENT, "");
   }
 }

@@ -12,6 +12,10 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './component/header/header.component';
 import { SideNavComponent } from './component/side-nav/side-nav.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { StudentComponent } from './student/student.component';
+import { CourseComponent } from './course/course.component';
+import { SemesterComponent } from './semester/semester.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     LoginComponent,
     HomeComponent,
     HeaderComponent,
-    SideNavComponent
+    SideNavComponent,
+    StudentComponent,
+    CourseComponent,
+    SemesterComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

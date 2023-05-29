@@ -11,7 +11,7 @@ app-header {
     width: 100%;
     top: 4rem;
     z-index: 1;
-    height: 100%;
+    height: calc(91%);
   }
   
   app-side-nav {
@@ -19,11 +19,12 @@ app-header {
     position: absolute;
     left: 0rem;
     top: 0rem;
-    width: 60px;
+    width: 3%;
     height: 100%;
     overflow-x: hidden;
     white-space: nowrap;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
+    transition: width 250ms ease-in;
   }
   
   .black-border {
@@ -36,17 +37,23 @@ app-header {
   }
 
   .app-side-nav-open{
-    width: 250px;
+    width: 20%;
+    height: 100%;
   }
 
   .display-area{
-    width: calc(100%-60px);
+    width: 97%;
     position: absolute;
-    left: 60px;
+    left: 3%;
+    transition:left 250ms ease-in, width 250ms ease-in;
+    height: 100%;
+
   }
 
   .display-area-shrink{
-    width: calc(100%-250px);
-    left: 250px;
+    width: 80%;
+    left: 20%;
+    height: 100%;
   }
+
 
