@@ -6,6 +6,7 @@ import { RegisteredCourses } from '../model/registeredCourses.model';
 import { CommonResponse } from '../model/common.model';
 import { CousesResponse } from '../model/courses.model';
 import { StudentResponse } from '../model/student.model';
+import { SemesterResponse } from '../model/semester.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,9 @@ export class ApiService {
   private COURSES = "courses";
   private ADD_COURSES = "add_course";
   private GET_STUDENT = "get_student";
+  private ADD_STUDENT = "add_student";
+  private GET_SEMESTER = "get_semester";
+  private ADD_SEMESTER = "add_semester"
 
   constructor(private http: HttpClient) { }
 
@@ -63,4 +67,30 @@ export class ApiService {
   getStudents(): Observable<StudentResponse> {
     return this.http.post<StudentResponse>(this.BASE_URL + this.GET_STUDENT, "");
   }
+
+  getSemester(): Observable<SemesterResponse> {
+    return this.http.get<SemesterResponse>(this.BASE_URL + this.GET_SEMESTER);
+  }
+
+  addSemester(title: any) {
+
+    var formData: any = new FormData()
+    formData.append("title", title)
+    formData.append('status', 'active')
+
+    return this.http.post<CommonResponse>(this.BASE_URL + this.ADD_SEMESTER, formData)
+  }
+
+  addStudent(name: any, phone: any, rollNo: any, image: any): Observable<CommonResponse> {
+
+    var formData: any = new FormData()
+    formData.append("name", name)
+    formData.append('phone', phone)
+    formData.append("roll_no", rollNo)
+    formData.append('file', image)
+
+    return this.http.post<CommonResponse>(this.BASE_URL + this.ADD_STUDENT, formData)
+  }
+
+
 }

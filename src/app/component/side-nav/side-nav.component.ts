@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { faHome, faUser, faBook } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faUser, faBook, faGraduationCap  } from '@fortawesome/free-solid-svg-icons';
 import { SidenavService } from 'src/app/services/sidenav.service';
 
 
@@ -29,6 +29,12 @@ export class SideNavComponent implements OnInit {
       number: 3,
       icon: faBook,
       title: 'course'
+    },
+
+    {
+      number: 4,
+      icon: faGraduationCap,
+      title: 'semester'
     },
 
   ]

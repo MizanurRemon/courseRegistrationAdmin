@@ -1,0 +1,89 @@
+.row {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .column-card .scroll-list {
+      height: 97%;
+      overflow: scroll;
+    }
+    
+    ::-webkit-scrollbar {
+      width: 0px;
+    }
+  
+  .course-list {
+    background-color: black;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 5px;
+    cursor: pointer;
+  }
+  
+  .item-hover :hover{
+      background-color: rgb(55, 56, 56);
+  }
+  
+  .course-credits{
+      color: rgb(204, 205, 206);
+      font-size: 12px;
+  }
+  
+  .course-title{
+      color: white;
+      font-size: 14px;
+  }
+  
+  .course-status{
+      font-size: 12px;
+      margin-left: auto;
+  }
+  
+  .course-top{
+      display: flex;
+      flex-direction: row;
+  }
+  
+  .title-bar{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+  }
+  
+  .add-button{
+      margin-left: auto;
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+      background-color: rgba(88, 58, 116, 0.548);
+      padding: 5px 10px 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+  }
+  
+  
+  
+  .title-bar:hover .add-button{
+      background-color: rgba(137, 43, 226, 0.548) !important;
+      cursor: pointer;
+  }
+  
+  .add-update-button{
+      background-color: rgba(16, 82, 54, 0.842);
+      border-radius: 5px;
+      padding: 5px;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+  }
+  
+  form{
+      margin-bottom: 10px;
+  }
+  
