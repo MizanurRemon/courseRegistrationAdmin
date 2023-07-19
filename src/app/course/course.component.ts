@@ -58,7 +58,7 @@ export class CourseComponent implements OnInit {
 
   updateCourse(id: any, name: any, status: any){
 
-    //alert(id+" "+name+" "+status)
+    alert(id+" "+name+" "+status)
 
   }
 
