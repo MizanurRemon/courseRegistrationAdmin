@@ -16,6 +16,8 @@ export class StudentComponent implements OnInit {
 
   closeResult?: string;
   image?: File
+  imgResultBeforeCompression: string | undefined;
+  imgResultAfterCompression: string | undefined;
 
   ngOnInit(): void {
     this.getStudents()
@@ -84,19 +86,36 @@ export class StudentComponent implements OnInit {
     }
   }
 
-//   compressFile() {
-//     this.imageCompress.uploadFile().then(({image, orientation}) => {
-//         this.imgResultBeforeCompression = image;
-//         console.log('Size in bytes of the uploaded image was:', this.imageCompress.byteCount(image));
+  compressFile() {
+    this.imageCompress.uploadFile().then(({ image, orientation }) => {
+      this.imgResultBeforeCompression = image;
+      console.log('Size in bytes of the uploaded image was:', this.imageCompress.byteCount(image));
 
-//         this.imageCompress
-//             .compressFile(image, orientation, 50, 50) // 50% ratio, 50% quality
-//             .then(compressedImage => {
-//                 this.imgResultAfterCompression = compressedImage;
-//                 console.log('Size in bytes after compression is now:', this.imageCompress.byteCount(compressedImage));
-//             });
-//     });
-// }
+      this.imageCompress
+        .compressFile(image, orientation, 50, 50) // 50% ratio, 50% quality
+        .then(compressedImage => {
+          this.imgResultAfterCompression = compressedImage;
+          console.log('Size in bytes after compression is now:', this.imageCompress.byteCount(compressedImage));
+        });
+    });
+  }
+
+  onStatusUpdate(id: any, status: any) {
+    var changeStatus = status ? 'inactive' : 'active'
+
+    this.apiService.updateStudentStatus(id, changeStatus).pipe(take(1)).subscribe({
+      next: (response) => {
+        this.commonResponse = response
+        alert(this.commonResponse.message)
+
+        this.getStudents()
+        // if (this.commonResponse.message == "successfully updated") {
+
+        // }
+      }
+    });
+
+  }
 
 }
 

@@ -24,11 +24,15 @@ body {
 }
 
 .profile-image img {
-  width: 40px;
-  height: 40px;
- 
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
   object-fit: cover;
   object-position: center;
+}
+
+.edit-button {
+  background-color: rgb(22, 22, 24);
 }
 
 .card-top-row {
@@ -38,25 +42,25 @@ body {
 }
 
 .card-title-name {
-    font-weight: bold;
+  font-weight: bold;
 }
 
-.add-button{
-    margin-left: auto;
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    background-color: rgb(73, 16, 90);
-    padding: 5px 10px 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    margin-right: 10px;
+.add-button {
+  margin-left: auto;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: rgb(73, 16, 90);
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin-right: 10px;
 }
 
-.modal-title{
-    font-weight: bold;
+.modal-title {
+  font-weight: bold;
 }
 

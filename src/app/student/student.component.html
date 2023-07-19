@@ -10,8 +10,7 @@
 						<div class="card-top-row">
 							<div class="card-title-name">Students</div>
 
-							<div (click)="open(content)"
-								class="add-button">
+							<div (click)="open(content)" class="add-button">
 								Add
 							</div>
 
@@ -33,12 +32,12 @@
 												<th>Actions</th>
 											</tr>
 										</thead>
-										<tbody *ngFor="let student of studentResponse?.data"
-											class="scroll-list">
+										<tbody *ngFor="let student of studentResponse?.data" class="scroll-list">
 											<tr>
 
 												<td class="align-middle text-center">
-													<div class="profile-image bg-light d-inline-flex justify-content-center align-items-center align-top">
+													<div
+														class="profile-image bg-light d-inline-flex justify-content-center align-items-center align-top">
 														<img src="{{getImage(student.image)}}">
 													</div>
 												</td>
@@ -48,20 +47,24 @@
 												<td class="text-nowrap align-middle">
 													{{student.created_at | date: 'hh:mm a dd MMM, yyyy'}}
 												</td>
-												<td class="text-nowrap align-middle">{{student.status}}</td>
+												<!-- <td class="text-nowrap align-middle">{{student.status}}</td> -->
+
+												<td class="text-center align-middle">
+
+													<mat-slide-toggle color="primary" (change)="onStatusUpdate(student.id, student.status === 'active' ? true : false)" checked="{{student.status === 'active' ? true : false}}">
+														<!-- {{student.status}} -->
+													</mat-slide-toggle>
+												</td>
 
 												<td class="text-center align-middle">
 													<div class="btn-group align-top">
-														<button class="btn btn-sm btn-outline-secondary badge"
-															type="button"
-															data-toggle="modal"
+														<button
+															class="edit-button btn btn-sm btn-outline-secondary badge"
+															type="button" data-toggle="modal"
 															data-target="#user-form-modal">
 															Edit
 														</button>
-														<button class="btn btn-sm btn-outline-secondary badge"
-															type="button">
-															<i class="fa fa-trash"></i>
-														</button>
+
 													</div>
 												</td>
 											</tr>
@@ -80,60 +83,49 @@
 </div>
 
 <!--modal-->
-<ng-template #content
-	let-modal>
+<ng-template #content let-modal>
 	<div class="modal-header">
-		<h4 class="modal-title"
-			id="modal-basic-title">
+		<h4 class="modal-title" id="modal-basic-title">
 			New Student
 		</h4>
-		<button (click)="modal.dismiss('Cross click')"
-			type="button"
-			class="close"
-			aria-label="Close">
+		<button (click)="modal.dismiss('Cross click')" type="button" class="close" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
 	</div>
 	<div class="modal-body">
 		<form>
 
-            <div class="form-group">
-			
+			<div class="form-group">
+
 				<div class="input-group">
-					<input #file id="file" type="file"
-						class="form-control" (change)="onChangeFile($event)">
+					<input #file id="file" type="file" class="form-control" (change)="onChangeFile($event)">
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="name">Name</label>
 				<div class="input-group">
-					<input #name id="name"
-						class="form-control">
+					<input #name id="name" class="form-control">
 				</div>
 			</div>
 
-            <div class="form-group">
+			<div class="form-group">
 				<label for="phone">Phone</label>
 				<div class="input-group">
-					<input #phone id="phone"
-						class="form-control">
+					<input #phone id="phone" class="form-control">
 				</div>
 			</div>
 
-            <div class="form-group">
+			<div class="form-group">
 				<label for="roll_no">Roll No</label>
 				<div class="input-group">
-					<input #roll_no id="roll_no"
-						class="form-control">
+					<input #roll_no id="roll_no" class="form-control">
 				</div>
 			</div>
 		</form>
 	</div>
 	<div class="modal-footer">
-		<button (click)="addStudent(name.value, phone.value, roll_no.value)"
-			type="button"
-			class="btn btn-outline-dark">
+		<button (click)="addStudent(name.value, phone.value, roll_no.value)" type="button" class="btn btn-outline-dark">
 			Save
 		</button>
 	</div>

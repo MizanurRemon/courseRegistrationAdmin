@@ -23,12 +23,13 @@ export class ApiService {
   private ADD_STUDENT = "add_student";
   private GET_SEMESTER = "get_semester";
   private ADD_SEMESTER = "add_semester"
+  private UPDATE_STUDENT_STATUS = "update_student_status"
 
   constructor(private http: HttpClient) { }
 
   adminLogin(username: String, password: String): Observable<LoginResponse> {
 
-    var formData: any = new FormData()
+    const formData: any = new FormData();
     formData.append('username', username)
     formData.append('password', password)
 
@@ -43,7 +44,7 @@ export class ApiService {
   }
 
   updateRegisteredCourseStatus(id: any, status: any): Observable<CommonResponse> {
-    var formData: any = new FormData()
+    const formData: any = new FormData();
     formData.append('id', id)
     formData.append('status', status)
 
@@ -56,7 +57,7 @@ export class ApiService {
   }
 
   addCourses(courseName: any, credits: String): Observable<CommonResponse> {
-    var formData: any = new FormData()
+    const formData: any = new FormData();
     formData.append('title', courseName)
     formData.append('credits', credits)
     formData.append('status', 'active')
@@ -90,6 +91,15 @@ export class ApiService {
     formData.append('file', image)
 
     return this.http.post<CommonResponse>(this.BASE_URL + this.ADD_STUDENT, formData)
+  }
+
+
+  updateStudentStatus(id: any, status : any): Observable<CommonResponse>{
+    var formData: any = new FormData()
+    formData.append("id", id)
+    formData.append('status', status)
+
+    return this.http.post<CommonResponse>(this.BASE_URL+this.UPDATE_STUDENT_STATUS, formData);
   }
 
 

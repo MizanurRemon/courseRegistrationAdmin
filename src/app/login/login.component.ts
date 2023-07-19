@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         if (this.loginResponse.data != null) {
           this.cookieServie.set('id', this.loginResponse.data.id.toString())
           this.cookieServie.set('token', this.loginResponse.data.token.toString())
-          alert("login successfull")
+          alert("login successful")
           this.router.navigate(['home'], { replaceUrl: true})
         }else{
           alert("invalid username/password")
