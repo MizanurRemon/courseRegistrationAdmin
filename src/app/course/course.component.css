@@ -1,56 +1,53 @@
 .row {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .column-card .scroll-list {
     height: 97%;
     overflow: scroll;
-  }
-  
-  ::-webkit-scrollbar {
+}
+
+::-webkit-scrollbar {
     width: 0px;
-  }
+}
 
 .course-list {
-  background-color: black;
-  border-radius: 10px;
-  padding: 10px;
-  margin-top: 5px;
-  cursor: pointer;
+    background-color: black;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 5px;
+    cursor: pointer;
 }
 
-.item-hover :hover{
+/* .item-hover :hover {
     background-color: rgb(55, 56, 56);
-}
+} */
 
-.course-credits{
+.course-credits {
     color: rgb(204, 205, 206);
     font-size: 12px;
 }
 
-.course-title{
+.course-title {
     color: white;
     font-size: 14px;
 }
 
-.course-status{
+.course-status {
     font-size: 12px;
     margin-left: auto;
 }
 
-.course-top{
-    display: flex;
-    flex-direction: row;
-}
+.course-top {}
 
-.title-bar{
+.title-bar {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.add-button{
+.add-button {
     margin-left: auto;
     color: white;
     font-size: 12px;
@@ -66,12 +63,12 @@
 
 
 
-.title-bar:hover .add-button{
+.title-bar:hover .add-button {
     background-color: rgba(137, 43, 226, 0.548) !important;
     cursor: pointer;
 }
 
-.add-update-button{
+.add-update-button {
     background-color: rgba(16, 82, 54, 0.842);
     border-radius: 5px;
     padding: 5px;
@@ -83,6 +80,36 @@
     display: flex;
 }
 
-form{
+form {
     margin-bottom: 10px;
+}
+
+.right-button-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: end;
+    justify-content: center;
+    height: 100%;
+}
+
+fa-icon {
+    color: aliceblue;
+    margin: 10px;
+}
+
+fa-icon :hover {
+    color: yellow;
+
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.td-right{
+   display: flex;
+   flex-direction: row;
+   float: right;
 }

@@ -24,6 +24,7 @@ export class ApiService {
   private GET_SEMESTER = "get_semester";
   private ADD_SEMESTER = "add_semester"
   private UPDATE_STUDENT_STATUS = "update_student_status"
+  private UPDATE_COURSE_STATUS = "update_course_status"
 
   constructor(private http: HttpClient) { }
 
@@ -100,6 +101,14 @@ export class ApiService {
     formData.append('status', status)
 
     return this.http.post<CommonResponse>(this.BASE_URL+this.UPDATE_STUDENT_STATUS, formData);
+  }
+
+  updateCourseStatus(id: any, status : any): Observable<CommonResponse>{
+    var formData: any = new FormData()
+    formData.append("id", id)
+    formData.append('status', status)
+
+    return this.http.post<CommonResponse>(this.BASE_URL+this.UPDATE_COURSE_STATUS, formData);
   }
 
 

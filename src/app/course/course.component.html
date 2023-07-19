@@ -5,33 +5,43 @@
 				<div class="title-bar">
 					<h5>Course List</h5>
 
-					<div (click)="changeValue('add')"
-						class="add-button">
+					<div (click)="changeValue('add')" class="add-button">
 						Add
 					</div>
 				</div>
 
 				<div class="scroll-list">
 
-					<div *ngFor="let item of courseResponse?.data"
-						class="item-hover">
-						<div (click)="onItemClick()"
-							class="course-list">
+					<div *ngFor="let item of courseResponse?.data" class="item-hover">
 
-							<div class="course-top">
-								<div class="course-title">{{item.title}}</div>
+					
+						<div class="course-list">
 
-								<div [ngStyle]="{'color': item.status == 'active'? 'green' : 'red'}"
-									class="course-status">
-									{{item.status}}
-								</div>
-
-							</div>
-
-							<div class="course-credits">
-								credit: {{item.credits}}
-							</div>
-
+							<table>
+								<tr>
+									<td>
+										<div class="course-title">{{item.title}}</div>
+									</td>
+									<td class="td-right">
+										<mat-slide-toggle
+											(change)="updateCourseStatus( item.id, item.status === 'active' ? true : false)"
+											class="toggle-switch" color="primary"
+											checked="{{item.status === 'active' ? true : false}}">
+											<!-- {{student.status}} -->
+										</mat-slide-toggle>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<div class="course-credits">
+											credit: {{item.credits}}
+										</div>
+									</td>
+									<td class="td-right"> 
+										<fa-icon (click)="onItemClick(item.id, item.title, item.credits)" [icon]="editIcon"></fa-icon>
+									</td>
+								</tr>
+							</table>
 						</div>
 					</div>
 
@@ -39,93 +49,66 @@
 			</div>
 
 			<div class="col-lg-5 col-md-6">
-				<div *ngIf="type == 'add'"
-					class="column-card">
+				<div *ngIf="type == 'add'" class="column-card">
 					<h5>
 						{{type |titlecase}} Courses
 					</h5>
 
 					<form #loginForm="ngForm">
 						<div class="form-group was-validated">
-							<label for="coursename"
-								class="form-label">
+							<label for="coursename" class="form-label">
 								Coursename
 							</label>
-							<input #coursename
-								type="text"
-								id="coursename"
-								placeholder="Coursename"
-								class="form-control"
+							<input #coursename type="text" id="coursename" placeholder="Coursename" class="form-control"
 								required>
 						</div>
 
 						<div class="form-group was-validated">
-							<label for="credit"
-								class="form-label">
+							<label for="credit" class="form-label">
 								Credits
 							</label>
-							<input #credit
-								type="credit"
-								id="credit"
-								placeholder="credit"
-								class="form-control"
-								required>
+							<input #credit type="credit" id="credit" placeholder="credit" class="form-control" required>
 						</div>
 
 					</form>
 
-					<div (click)="addCourse(coursename.value, credit.value)"
-						class="add-button">
+					<div (click)="addCourse(coursename.value, credit.value)" class="add-button">
 						{{type | titlecase}}
 					</div>
 
 				</div>
 
-				<div *ngIf="type == 'update'"
-					class="column-card">
+				<div *ngIf="type == 'update'" class="column-card">
 
 					<div class="title-bar">
 						<h5>
 							{{type |titlecase}} Courses
 						</h5>
 
-						<div (click)="changeValue('')"
-							class="add-button">
+						<div (click)="changeValue('')" class="add-button">
 							close
 						</div>
 					</div>
 
 					<form #loginForm="ngForm">
 						<div class="form-group was-validated">
-							<label for="coursename"
-								class="form-label">
+							<label for="coursename" class="form-label">
 								Coursename
 							</label>
-							<input #coursename
-								type="text"
-								id="coursename"
-								placeholder="Coursename"
-								class="form-control"
+							<input [value]="courseName" #coursename type="text" id="coursename" placeholder="Coursename" class="form-control"
 								required>
 						</div>
 
 						<div class="form-group was-validated">
-							<label for="credit"
-								class="form-label">
+							<label for="credit" class="form-label">
 								Credits
 							</label>
-							<input #credit
-								type="credit"
-								id="credit"
-								placeholder="credit"
-								class="form-control"
-								required>
+							<input [value]="courseCredit" #credit type="credit" id="credit" placeholder="credit" class="form-control" required>
 						</div>
 
 					</form>
 
-					<div
-						class="add-button">
+					<div class="add-button" (click)="updateCourse(courseID,coursename.value, credit.value)">
 						{{type | titlecase}}
 					</div>
 

@@ -3,7 +3,7 @@ import { ApiService } from '../services/api.service';
 import { take } from 'rxjs';
 import { CousesResponse } from '../model/courses.model';
 import { CommonResponse } from '../model/common.model';
-
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
@@ -11,6 +11,12 @@ import { CommonResponse } from '../model/common.model';
 })
 export class CourseComponent implements OnInit {
   type: any = "";
+
+  editIcon = faEdit
+
+  courseID : any
+  courseName : any
+  courseCredit: any
 
   ngOnInit(): void {
 
@@ -42,8 +48,18 @@ export class CourseComponent implements OnInit {
 
   }
 
-  onItemClick() {
+  onItemClick(courseID : any, name: any, credit: any) {
+
+    this.courseID = courseID
+    this.courseName = name
+    this.courseCredit = credit
     this.type = "update"
+  }
+
+  updateCourse(id: any, name: any, status: any){
+
+    //alert(id+" "+name+" "+status)
+
   }
 
 
@@ -64,5 +80,25 @@ export class CourseComponent implements OnInit {
         }
       });
     }
+  }
+
+  updateCourseStatus(id: any, status : any){
+
+
+    var changedStatus = status ? "inactive" : "active"
+
+    this.type = ""
+
+    this.apiService.updateCourseStatus(id, changedStatus).pipe(take(1)).subscribe({
+      next: (response) => {
+        this.commonResponse = response
+
+        if (this.commonResponse.message == "successfully updated") {
+          this.getCourses()
+        } else {
+          alert(this.commonResponse.message)
+        }
+      }
+    });
   }
 }
