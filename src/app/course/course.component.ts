@@ -58,7 +58,20 @@ export class CourseComponent implements OnInit {
 
   updateCourse(id: any, name: any, status: any){
 
-    alert(id+" "+name+" "+status)
+    //alert(id+" "+name+" "+status)
+
+    this.apiService.updateCourse(id,name,status).pipe(take(1)).subscribe({
+      next: (response) => {
+        this.commonResponse = response
+
+        if (this.commonResponse.message == "successfully updated") {
+          this.type = ""
+          this.getCourses()
+        } else {
+          alert(this.commonResponse.message)
+        }
+      }
+    });
 
   }
 
