@@ -1,91 +1,111 @@
 <div class="container-fluid">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-5 col-md-6 column-card">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-6 column-card">
 
-				<h5>Pending Request</h5>
-
-				<div class="scroll-list">
-                    <div *ngFor="let item of registeredCourses?.data">
-
-                        <div *ngIf="item.status == 'pending'"
-                            class="request-list">
-    
-                            <div class="user-profile">
-    
-                                <img src="data:image/png;base64,{{item.student.image}}">
-    
-                                <div class="user-column-content">
-                                    <div class="username">
-                                        {{item.student.name}}
-                                    </div>
-    
-                                    <div class="user-roll">
-                                        {{item.student.roll_no}}
-                                    </div>
-                                </div>
-    
-                                <div class="date">
-                                    {{item.created_at | date : 'hh:mm a | dd MMM, yyy'}}
-                                </div>
-    
-                            </div>
-    
-                            <div class="content">
-                                Requested for taking {{item.course.title}} on {{item.semester.title}} semester.
-                            </div>
-    
-                            <div class="content-bottom">
-    
-                                <div class="accept-button" (click)="statusChangeClick(item.id, approved)">Accept</div>
-    
-                                <div class="decline-button" (click)="statusChangeClick(item.id, decline)">Decline</div>
-                            </div>
-    
-                        </div>
-                    </div>
-                </div>
-
-			</div>
-
-			<div class="col-lg-5 col-md-6 column-card">
-				<h5>Approved Request</h5>
+                <h5>Pending Request</h5>
 
                 <div class="scroll-list">
                     <div *ngFor="let item of registeredCourses?.data">
 
-                        <div *ngIf="item.status == 'approved'"
-                            class="request-list">
-    
+                        <div *ngIf="item.status == 'pending'" class="request-list">
+
                             <div class="user-profile">
-    
+
                                 <img src="data:image/png;base64,{{item.student.image}}">
-    
+
                                 <div class="user-column-content">
                                     <div class="username">
                                         {{item.student.name}}
                                     </div>
-    
+
                                     <div class="user-roll">
                                         {{item.student.roll_no}}
                                     </div>
                                 </div>
-    
+
                                 <div class="date">
-                                    {{item.created_at | date : 'hh:mm a | dd MMM, yyyy'}}
+                                    {{item.created_at | date : 'hh:mm a | dd MMM, yyy'}}
                                 </div>
-    
+
                             </div>
-    
+
                             <div class="content">
                                 Requested for taking {{item.course.title}} on {{item.semester.title}} semester.
                             </div>
+
+                            <div class="content-bottom">
+
+                                <div class="accept-button" (click)="statusChangeClick(item.id, approved)">Accept</div>
+
+                                <div class="decline-button" (click)="statusChangeClick(item.id, decline)">Decline</div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
-			</div>
 
-		</div>
+            </div>
 
-	</div>
+            <div class="col-lg-5 col-md-6 column-card">
+                <h5>Requests</h5>
+
+                <div class="scroll-list">
+                    <div *ngFor="let item of registeredCourses?.data">
+
+                        <div class="request-list" *ngIf="item.status != 'pending'">
+
+                            <div class="user-profile">
+
+                                <img src="data:image/png;base64,{{item.student.image}}">
+
+                                <div class="user-column-content">
+                                    <div class="username">
+                                        {{item.student.name}}
+                                    </div>
+
+                                    <div class="user-roll">
+                                        {{item.student.roll_no}}
+                                    </div>
+                                </div>
+
+                                <div class="date">
+                                    {{item.created_at | date : 'hh:mm a | dd MMM, yyyy'}}
+                                </div>
+
+                            </div>
+
+
+
+                            <table>
+                                <tr class="content-row">
+                                    <th>
+                                        <div class="content">
+                                            Requested for taking {{item.course.title}} on {{item.semester.title}}
+                                            semester.
+                                        </div>
+                                    </th>
+
+                                    <!-- <th class="statusIcon" [ngStyle]= "{'color': item.status == 'approved' ? 'green': 'red'}">
+                                        {{item.status}}
+                                    </th> -->
+
+                                    <th>
+                                        <fa-icon [icon]="cancelIcon" *ngIf="item.status == 'decline'" [ngStyle]="{'color': 'red'}"></fa-icon>
+
+                                        <fa-icon [icon]="checkIcon" *ngIf="item.status == 'approved'" [ngStyle]="{'color': 'green'}"></fa-icon>
+                                    </th>
+                                </tr>
+
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
 </div>

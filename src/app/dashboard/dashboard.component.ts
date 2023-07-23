@@ -4,6 +4,8 @@ import { take } from 'rxjs';
 import { RegisteredCourses } from '../model/registeredCourses.model';
 import { Daum } from '../model/registeredCourses.model';
 import { CommonResponse } from '../model/common.model';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCancel } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +13,9 @@ import { CommonResponse } from '../model/common.model';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+  checkIcon = faCheck
+  cancelIcon = faCancel
 
   approved: any = "approved"
   decline: any = "decline"
@@ -26,9 +31,6 @@ export class DashboardComponent implements OnInit {
 
   commonResponse?: CommonResponse
 
-  // requestedCourses? : Daum
-
-  // approvedCourses? : Daum
 
   getRegisteredCourse() {
     console.log("course")

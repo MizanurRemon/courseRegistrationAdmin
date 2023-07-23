@@ -16,7 +16,7 @@ export class ApiService {
   private BASE_URL = "http://localhost:5001/v2/"
   private LOGIN = "admin_login"
   private REGISTERED_COURSES = "get_registered_courses"
-  private UPDATE_REGISTERED_COURSE_STATUS = "update_registered_courses_status";
+  private UPDATE_REGISTERED_COURSE_STATUS = "update_registered_course_status";
   private COURSES = "courses";
   private ADD_COURSES = "add_course";
   private GET_STUDENT = "get_student";

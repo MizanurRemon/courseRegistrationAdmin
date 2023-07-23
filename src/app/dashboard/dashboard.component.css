@@ -60,6 +60,7 @@
   color: white;
   font-size: 14px;
   margin: 10px 0px 10px 0px;
+  width: 100%;
 }
 
 .content-bottom {
@@ -101,4 +102,21 @@
   justify-content: center;
   cursor: pointer;
   margin: 0px 0px 0px 10px;
+}
+
+.statusIcon{
+  margin-left: auto;
+}
+
+.content-row{
+  align-items: center;
+}
+
+table {
+  width: 100%;
+}
+
+
+fa-icon :hover{
+
 }
