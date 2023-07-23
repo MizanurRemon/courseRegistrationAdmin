@@ -11,7 +11,7 @@
 							<div class="card-title-name">Students</div>
 
 							<div (click)="open(content)" class="add-button">
-								Add
+								<fa-icon [icon]="addIcon"></fa-icon> Add Student
 							</div>
 
 						</div>
@@ -38,7 +38,7 @@
 												<td class="align-middle text-center">
 													<div
 														class="profile-image bg-light d-inline-flex justify-content-center align-items-center align-top">
-														<img src="{{getImage(student.image)}}">
+														<img (click)="viewProfileImage(profileImageContent, student)" src="{{getImage(student.image)}}">
 													</div>
 												</td>
 												<td class="text-nowrap align-middle">{{student.name}}</td>
@@ -51,14 +51,16 @@
 
 												<td class="text-center align-middle">
 
-													<mat-slide-toggle color="primary" (change)="onStatusUpdate(student.id, student.status === 'active' ? true : false)" checked="{{student.status === 'active' ? true : false}}">
+													<mat-slide-toggle color="primary"
+														(change)="onStatusUpdate(student.id, student.status === 'active' ? true : false)"
+														checked="{{student.status === 'active' ? true : false}}">
 														<!-- {{student.status}} -->
 													</mat-slide-toggle>
 												</td>
 
 												<td class="text-center align-middle">
 													<div class="btn-group align-top">
-														<button
+														<button (click)="updateUserDetails(student, editContent, student.name)"
 															class="edit-button btn btn-sm btn-outline-secondary badge"
 															type="button" data-toggle="modal"
 															data-target="#user-form-modal">
@@ -95,6 +97,10 @@
 	<div class="modal-body">
 		<form>
 
+			<div class="image-view">
+				<img [src]="defaultImage ||'/assets/noprofileimage.jpg'">
+			</div>
+
 			<div class="form-group">
 
 				<div class="input-group">
@@ -126,6 +132,73 @@
 	</div>
 	<div class="modal-footer">
 		<button (click)="addStudent(name.value, phone.value, roll_no.value)" type="button" class="btn btn-outline-dark">
+			Save
+		</button>
+	</div>
+</ng-template>
+
+
+<ng-template #profileImageContent let-modal>
+	<div class="modal-header">
+		<h4 class="top-bar-title" id="modal-basic-title">
+			Change Image
+		</h4>
+		<button (click)="modal.dismiss('Cross click')" type="button" class="image-close" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<form>
+
+			<div class="image-view">
+				<img [src]="defaultImage||'/assets/noprofileimage.jpg'">
+			</div>
+
+			<div class="form-group">
+
+				<div class="input-group">
+					<input #file id="file" type="file" class="form-control" (change)="onChangeFile($event)">
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button (click)="updateProfileImage(profileID, image)" type="button" class="btn btn-outline-dark">
+			Save
+		</button>
+	</div>
+</ng-template>
+
+<ng-template #editContent let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">
+			Edit Student
+		</h4>
+		<button (click)="modal.dismiss('Cross click')" type="button" class="close" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<form>
+
+			<div class="form-group">
+				<label for="name">Name</label>
+				<div class="input-group">
+					<input [value]="name" #editName id="name" class="form-control">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="phone">Phone</label>
+				<div class="input-group">
+					<input [value]="phone" #editPhone id="phone" class="form-control">
+				</div>
+			</div>
+
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="saveUpdatedUserDetails(profileID, editName.value, editPhone.value)">
 			Save
 		</button>
 	</div>

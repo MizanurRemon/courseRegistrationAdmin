@@ -6,6 +6,7 @@ import { HelpersService } from '../services/helpers.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonResponse } from '../model/common.model';
 import { NgxImageCompressService } from 'ngx-image-compress';
+import { faAdd } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-student',
@@ -14,10 +15,17 @@ import { NgxImageCompressService } from 'ngx-image-compress';
 })
 export class StudentComponent implements OnInit {
 
+  profileID: any
+  name: any
+  phone: any
+
   closeResult?: string;
-  image?: File
+  image?: File | null = null;
   imgResultBeforeCompression: string | undefined;
   imgResultAfterCompression: string | undefined;
+  addIcon = faAdd
+
+  defaultImage: any
 
   ngOnInit(): void {
     this.getStudents()
@@ -44,9 +52,12 @@ export class StudentComponent implements OnInit {
   }
 
   open(content: any) {
+    this.defaultImage = ""
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
+      
     }, (reason) => {
+     
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
@@ -81,8 +92,16 @@ export class StudentComponent implements OnInit {
   }
 
   onChangeFile(event: any) {
+
     if (event.target.files.length > 0) {
       this.image = event.target.files[0]
+
+      const reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (e: any) => {
+        this.defaultImage = this.getImage(e.target.result.split('base64,')[1]);
+      };
+
     }
   }
 
@@ -117,7 +136,54 @@ export class StudentComponent implements OnInit {
 
   }
 
+
+  viewProfileImage(content: any, student: any) {
+    this.image = null
+    this.defaultImage = "data:image/png;base64," + student.image
+    this.profileID = student.id
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  updateProfileImage(id: any, image: any) {
+    if(image == null){
+      alert("choose image from file")
+    }else{
+      this.apiService.updateStudentImage(id, image).pipe(take(1)).subscribe({
+        next : (response) =>{
+          this.commonResponse = response
+          alert(this.commonResponse.message)
+
+
+          if(this.commonResponse.message == "successfully updated"){
+            this.getStudents()
+
+          }
+        }
+      })
+    }
+  }
+
+  updateUserDetails(student: any, content: any, title: any){
+    
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+
+    this.profileID =student.id
+    this.name = student.name
+    this.phone = student.phone
+
+  }
+
+  saveUpdatedUserDetails(id: any, name: any, phone: any){
+    alert(id+" "+name+" "+phone)
+  }
+
 }
 
-
-//modal.close('Save click')
