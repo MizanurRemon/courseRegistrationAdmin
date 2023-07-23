@@ -183,6 +183,8 @@ export class StudentComponent implements OnInit {
 
   saveUpdatedUserDetails(id: any, name: any, phone: any){
     alert(id+" "+name+" "+phone)
+
+    
   }
 
 }
