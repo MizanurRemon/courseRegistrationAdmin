@@ -3,7 +3,7 @@ import { SemesterResponse } from '../model/semester.model';
 import { ApiService } from '../services/api.service';
 import { take } from 'rxjs';
 import { CommonResponse } from '../model/common.model';
-
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-semester',
   templateUrl: './semester.component.html',
@@ -12,6 +12,11 @@ import { CommonResponse } from '../model/common.model';
 export class SemesterComponent implements OnInit {
 
   type: any = "";
+  editIcon = faEdit
+
+  semTitle: any
+  semID: any
+
 
   ngOnInit(): void {
     this.getSemester()
@@ -32,10 +37,6 @@ export class SemesterComponent implements OnInit {
       this.type = m
     }
 
-  }
-
-  onItemClick() {
-    this.type = "update"
   }
 
   getSemester() {
@@ -61,6 +62,44 @@ export class SemesterComponent implements OnInit {
         }
       })
     }
+  }
+
+  updateSemesterStatus(id: any, status: any) {
+
+    this.apiService.updateSemesterStatus(id, status).pipe(take(1)).subscribe({
+      next: (response) => {
+        this.commonResponse = response
+        alert(this.commonResponse.message)
+        if (this.commonResponse.message == "successfully updated") {
+          this.getSemester()
+        }
+      }
+    })
+  }
+
+  onEditClick(id: any, semTitle: any){
+    this.type = "update"
+    this.semTitle = semTitle
+    this.semID = id
+  }
+
+  onSemesterUpdateClick(id: any, title: any) {
+   
+
+    this.apiService.updateSemester(id, title).pipe(take(1)).subscribe({
+      next : (response) =>{
+        
+        this.commonResponse = response
+        alert(this.commonResponse.message)
+
+        if(this.commonResponse.message == "successfully updated"){
+          this.type =""
+          this.semID = ""
+          this.getSemester()
+        }
+
+      }
+    })
   }
 
 }

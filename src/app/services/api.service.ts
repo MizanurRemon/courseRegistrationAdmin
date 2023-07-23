@@ -25,7 +25,9 @@ export class ApiService {
   private ADD_SEMESTER = "add_semester"
   private UPDATE_STUDENT_STATUS = "update_student_status"
   private UPDATE_COURSE_STATUS = "update_course_status"
-  private UPDATE_COURSE =  "update_course"
+  private UPDATE_COURSE = "update_course"
+  private UPDATE_SEMESTER_STATUS = "update_semester_status"
+  private UPDATE_SEMESTER = "update_semester"
 
   constructor(private http: HttpClient) { }
 
@@ -96,29 +98,45 @@ export class ApiService {
   }
 
 
-  updateStudentStatus(id: any, status : any): Observable<CommonResponse>{
+  updateStudentStatus(id: any, status: any): Observable<CommonResponse> {
     var formData: any = new FormData()
     formData.append("id", id)
     formData.append('status', status)
 
-    return this.http.post<CommonResponse>(this.BASE_URL+this.UPDATE_STUDENT_STATUS, formData);
+    return this.http.post<CommonResponse>(this.BASE_URL + this.UPDATE_STUDENT_STATUS, formData);
   }
 
-  updateCourseStatus(id: any, status : any): Observable<CommonResponse>{
+  updateCourseStatus(id: any, status: any): Observable<CommonResponse> {
     var formData: any = new FormData()
     formData.append("id", id)
     formData.append('status', status)
 
-    return this.http.post<CommonResponse>(this.BASE_URL+this.UPDATE_COURSE_STATUS, formData);
+    return this.http.post<CommonResponse>(this.BASE_URL + this.UPDATE_COURSE_STATUS, formData);
   }
 
-  updateCourse(id: any, title : any, credits: any): Observable<CommonResponse>{
+  updateCourse(id: any, title: any, credits: any): Observable<CommonResponse> {
     var formData: any = new FormData()
     formData.append("id", id)
     formData.append('title', title)
     formData.append('credits', credits)
 
-    return this.http.post<CommonResponse>(this.BASE_URL+this.UPDATE_COURSE, formData);
+    return this.http.post<CommonResponse>(this.BASE_URL + this.UPDATE_COURSE, formData);
+  }
+
+  updateSemesterStatus(id: any, status: any): Observable<CommonResponse> {
+
+    var formData = new FormData()
+    formData.append("id", id)
+    formData.append("status", status)
+    return this.http.post<CommonResponse>(this.BASE_URL + this.UPDATE_SEMESTER_STATUS, formData)
+  }
+
+  updateSemester(id: any, title: any): Observable<CommonResponse>{
+    var formData = new FormData()
+    formData.append("id", id)
+    formData.append("title", title)
+
+    return this.http.post<CommonResponse>(this.BASE_URL+this.UPDATE_SEMESTER, formData)
   }
 
 

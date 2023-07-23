@@ -5,32 +5,36 @@
 				<div class="title-bar">
 					<h5>Semester List</h5>
 
-					<div (click)="changeValue('add')"
-						class="add-button">
+					<div (click)="changeValue('add')" class="add-button">
 						Add
 					</div>
 				</div>
 
 				<div class="scroll-list">
 
-					<div *ngFor="let item of semesterResponse?.data"
-						class="item-hover">
-						<div (click)="onItemClick()"
-							class="course-list">
+					<div *ngFor="let item of semesterResponse?.data" class="item-hover">
+						<div  class="course-list">
 
 							<div class="course-top">
 								<div class="course-title">{{item.title}}</div>
 
-								<div [ngStyle]="{'color': item.status == 'active'? 'green' : 'red'}"
+								<!-- <div [ngStyle]="{'color': item.status == 'active'? 'green' : 'red'}"
 									class="course-status">
 									{{item.status}}
+								</div> -->
+								<!-- (change)="updateCourseStatus( item.id, item.status === 'active' ? true : false)" -->
+								<div class="update-column">
+									<mat-slide-toggle
+										(change)="updateSemesterStatus( item.id, item.status === 'active' ? 'inactive' : 'active')"
+										class="toggle-switch" color="primary"
+										checked="{{item.status === 'active' ? true : false}}">
+									</mat-slide-toggle>
+
+									<fa-icon (click)="onEditClick(item.id, item.title)" [icon]="editIcon"></fa-icon>
+
 								</div>
 
 							</div>
-
-							<!-- <div class="course-credits">
-								credit: {{item.credits}}
-							</div> -->
 
 						</div>
 					</div>
@@ -39,80 +43,51 @@
 			</div>
 
 			<div class="col-lg-5 col-md-6">
-				<div *ngIf="type == 'add'"
-					class="column-card">
+				<div *ngIf="type == 'add'" class="column-card">
 					<h5>
 						{{type |titlecase}} semester
 					</h5>
 
 					<form #loginForm="ngForm">
 						<div class="form-group was-validated">
-							<label for="title"
-								class="form-label">
+							<label for="title" class="form-label">
 								Title
 							</label>
-							<input #title
-								type="text"
-								id="title"
-								placeholder="title"
-								class="form-control"
-								required>
+							<input #title type="text" id="title" placeholder="title" class="form-control" required>
 						</div>
 
 					</form>
 
-					<div (click)="addSemester(title.value)"
-						class="add-button">
+					<div (click)="addSemester(title.value)" class="add-button">
 						{{type | titlecase}}
 					</div>
 
 				</div>
 
-				<div *ngIf="type == 'update'"
-					class="column-card">
+				<div *ngIf="type == 'update'" class="column-card">
 
 					<div class="title-bar">
 						<h5>
-							{{type |titlecase}} Courses
+							{{type |titlecase}} Semester
 						</h5>
 
-						<div (click)="changeValue('')"
-							class="add-button">
+						<div (click)="changeValue('')" class="add-button">
 							close
 						</div>
 					</div>
 
 					<form #loginForm="ngForm">
 						<div class="form-group was-validated">
-							<label for="coursename"
-								class="form-label">
-								Coursename
+							<label for="semesterTitle" class="form-label">
+								Title
 							</label>
-							<input #coursename
-								type="text"
-								id="coursename"
-								placeholder="Coursename"
-								class="form-control"
-								required>
-						</div>
-
-						<div class="form-group was-validated">
-							<label for="credit"
-								class="form-label">
-								Credits
-							</label>
-							<input #credit
-								type="credit"
-								id="credit"
-								placeholder="credit"
-								class="form-control"
+							<input [value]="semTitle" #semesterTitle type="text" id="semesterTitle" placeholder="Title" class="form-control"
 								required>
 						</div>
 
 					</form>
 
-					<div
-						class="add-button">
+					<div class="add-button" (click)="onSemesterUpdateClick(semID, semesterTitle.value)">
 						{{type | titlecase}}
 					</div>
 
