@@ -17,7 +17,6 @@ export class StudentComponent implements OnInit {
 
   profileID: any
   name: any
-  phone: any
 
   closeResult?: string;
   image?: File | null = null;
@@ -167,7 +166,7 @@ export class StudentComponent implements OnInit {
     }
   }
 
-  updateUserDetails(student: any, content: any, title: any){
+  updateStudentDetails(student: any, content: any, title: any){
     
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -177,12 +176,22 @@ export class StudentComponent implements OnInit {
 
     this.profileID =student.id
     this.name = student.name
-    this.phone = student.phone
 
   }
 
-  saveUpdatedUserDetails(id: any, name: any, phone: any){
-    alert(id+" "+name+" "+phone)
+  saveUpdatedStudentDetails(id: any, name: any){
+    this.apiService.saveUpdatedStudentDetails(id, name).pipe(take(1)).subscribe({
+      next : (response) =>{
+        this.commonResponse = response
+        alert(this.commonResponse.message)
+
+
+        if(this.commonResponse.message == "successfully updated"){
+          this.getStudents()
+
+        }
+      }
+    })
 
     
   }

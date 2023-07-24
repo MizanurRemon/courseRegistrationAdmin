@@ -29,6 +29,7 @@ export class ApiService {
   private UPDATE_SEMESTER_STATUS = "update_semester_status"
   private UPDATE_SEMESTER = "update_semester"
   private STUDENT_IMAGE_UPDATE = "update_student_image"
+  private UPDATE_STUDENT_DETAILS = "update_student_details"
 
   constructor(private http: HttpClient) { }
 
@@ -132,19 +133,27 @@ export class ApiService {
     return this.http.post<CommonResponse>(this.BASE_URL + this.UPDATE_SEMESTER_STATUS, formData)
   }
 
-  updateSemester(id: any, title: any): Observable<CommonResponse>{
+  updateSemester(id: any, title: any): Observable<CommonResponse> {
     var formData = new FormData()
     formData.append("id", id)
     formData.append("title", title)
 
-    return this.http.post<CommonResponse>(this.BASE_URL+this.UPDATE_SEMESTER, formData)
+    return this.http.post<CommonResponse>(this.BASE_URL + this.UPDATE_SEMESTER, formData)
   }
 
-  updateStudentImage(id : any, image : any): Observable<CommonResponse>{
+  updateStudentImage(id: any, image: any): Observable<CommonResponse> {
     var formData = new FormData()
     formData.append("id", id)
     formData.append("file", image)
-    return this.http.post<CommonResponse>(this.BASE_URL+this.STUDENT_IMAGE_UPDATE, formData)
+    return this.http.post<CommonResponse>(this.BASE_URL + this.STUDENT_IMAGE_UPDATE, formData)
+  }
+
+  saveUpdatedStudentDetails(id: any, name: any): Observable<CommonResponse> {
+    var formData = new FormData()
+    formData.append("id", id)
+    formData.append("name", name)
+
+    return this.http.post<CommonResponse>(this.BASE_URL + this.UPDATE_STUDENT_DETAILS, formData);
   }
 
 
